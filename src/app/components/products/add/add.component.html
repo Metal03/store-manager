@@ -1,1 +1,168 @@
-<p>add works!</p>
+
+
+
+<div class="row mx-2 mb-5">
+
+    <div class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 
+                col-md-10 offset-md-1 col-sm-11 offset-sm-0 5 
+                col-xs-12 offset-xs-0">
+        <h3>{{ title }}</h3>
+        <hr>
+
+        <form>
+            <!-- TYPE -->
+            <div class="row mb-2">
+                <div class="col">
+                    <h6>Destacado</h6>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          SI
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                        NO
+                        </label>
+                    </div>
+                </div>
+                <div class="col">
+                    <h6>Tipo</h6>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Producto
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Accesorio
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <!-- SELECTS -->
+            <div class="row mb-2">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-2">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Categoria</option>
+                        <option value="1">Camisas</option>
+                        <option value="2">Vestidos</option>
+                        <option value="3">Pantalon</option>
+                        <option value="3">Short</option>
+                      </select>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-2">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Clasificacion</option>
+                        <option value="1">Hombre</option>
+                        <option value="2">Mujer</option>
+                        <option value="3">Niño</option>
+                      </select>
+                </div>
+            </div>
+            <br>
+            <!-- INPUT NAME -->
+            <div class="form-group mb-2">
+                <input type="text"
+                       class="form-control"
+                       name="name"
+                       placeholder="Nombre"
+                       required>
+            </div>
+            <!-- INPUT DESCRIPTION -->
+            
+            <div class="form-group mb-2">
+                <textarea class="form-control" 
+                          rows="3"
+                          name="description"
+                          placeholder="Descripcion">
+                </textarea>
+            </div>
+            <!-- INPUT PRICE -->
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="form-group">
+                        <input type="number"
+                               class="form-control"
+                               name="price"
+                               placeholder="Precio"
+                               required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <input type="number"
+                               class="form-control"
+                               name="discount"
+                               placeholder="Descuento"
+                               >
+                    </div>
+                </div>
+            </div>
+            <!-- SIZE -->
+            <div class="form-group mb-2">
+                <h6>Colores</h6>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">Azul</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox2">Amarrillo</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">Verde</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox2">Negro</label>
+                </div>
+            </div>
+            <!-- SIZE -->
+            <div class="form-group mb-2">
+                <h6>Tallas</h6>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">XS</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox2">S</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">M</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox2">L</label>
+                </div>
+            </div>
+
+            <!-- IMAGE -->
+
+
+
+            <!-- BTN -->
+            <br>
+            <div class="row">
+                <div class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2
+                            col-md-8 offset-md-2 col-sm-10 offset-sm-1
+                            col-xs-10 offset-xs-1">
+
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-primary">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

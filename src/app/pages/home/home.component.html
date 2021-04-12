@@ -1,18 +1,18 @@
+<app-navbar class="container-fluit"></app-navbar>
 
-
-<div class="mt-5">
+<div class=" container mt-5">
 
 
     <div class="row">
-        <div class="col-5">
+        <div class="col-5" *ngIf="!showForm">
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Buscar producto" aria-label="Search">
-                <!-- <button class="btn btn-outline-success" type="submit">Buscar</button> -->
             </form>
         </div>
         <div class="col-7">
-            <button class="btn btn-outline-info">
-                Add
+            <button [ngClass]="showForm ? 'btn btn-outline-danger' : 'btn btn-outline-primary'"
+                    (click)="showForm = !showForm">
+                {{ showForm ? 'Atrar': 'Agregar' }}
             </button>
         </div>
     </div>
@@ -23,7 +23,7 @@
 
 
     <!-- FORMS -->
-    <div class="row mt-5" *ngIf="!showForm">
+    <div class="row mt-5" *ngIf="showForm">
         <app-add></app-add>
     </div>
 

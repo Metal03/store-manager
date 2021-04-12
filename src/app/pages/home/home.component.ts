@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  public showForm: boolean = false;
+  public showForm: boolean = true;
   constructor() { }
 
   ngOnInit(): void {
