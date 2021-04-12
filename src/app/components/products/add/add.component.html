@@ -15,30 +15,47 @@
                 <div class="col">
                     <h6>Destacado</h6>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
+                        <input class="form-check-input" 
+                               type="checkbox" 
+                               value="" 
+                               id="flexCheckDefault"
+                               [checked]="featured">
+                        <label class="form-check-label" for="flexCheckDefault">
                           SI
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                        <label class="form-check-label" for="flexRadioDefault2">
-                        NO
+                        <input class="form-check-input" 
+                               type="checkbox" 
+                               value="" 
+                               id="flexCheckDefault"
+                               [checked]="!featured">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          NO
                         </label>
                     </div>
                 </div>
+                <!-- FEATURED -->
                 <div class="col">
                     <h6>Tipo</h6>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
+                        <input class="form-check-input" 
+                               type="checkbox" 
+                               value="" 
+                               id="flexCheckDefault"
+                               [checked]="!typeProduct">
+                        <label class="form-check-label" for="flexCheckDefault">
                           Producto
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            Accesorio
+                        <input class="form-check-input" 
+                               type="checkbox" 
+                               value="" 
+                               id="flexCheckDefault"
+                               [checked]="typeProduct">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Accesorio
                         </label>
                     </div>
                 </div>
@@ -48,19 +65,14 @@
             <div class="row mb-2">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-2">
                     <select class="form-select" aria-label="Default select example">
-                        <option selected>Categoria</option>
-                        <option value="1">Camisas</option>
-                        <option value="2">Vestidos</option>
-                        <option value="3">Pantalon</option>
-                        <option value="3">Short</option>
+                        <option selected>Categorias</option>
+                        <option *ngFor="let item of categories" [value]="item.id">{{ item.name | lowercase }}</option>
                       </select>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-2">
                     <select class="form-select" aria-label="Default select example">
-                        <option selected>Clasificacion</option>
-                        <option value="1">Hombre</option>
-                        <option value="2">Mujer</option>
-                        <option value="3">Niño</option>
+                        <option selected>Clasificacions</option>
+                        <option *ngFor="let item of clasifications" [value]="item.id">{{ item.name | lowercase }}</option>
                       </select>
                 </div>
             </div>
@@ -71,6 +83,7 @@
                        class="form-control"
                        name="name"
                        placeholder="Nombre"
+                       [(ngModel)]="product.name"
                        required>
             </div>
             <!-- INPUT DESCRIPTION -->
@@ -79,6 +92,7 @@
                 <textarea class="form-control" 
                           rows="3"
                           name="description"
+                          [(ngModel)]="product.description"
                           placeholder="Descripcion">
                 </textarea>
             </div>
@@ -90,6 +104,7 @@
                                class="form-control"
                                name="price"
                                placeholder="Precio"
+                               [(ngModel)]="product.price"
                                required>
                     </div>
                 </div>
@@ -98,52 +113,58 @@
                         <input type="number"
                                class="form-control"
                                name="discount"
+                               [(ngModel)]="product.discount"
                                placeholder="Descuento"
                                >
                     </div>
                 </div>
             </div>
+            <hr>
             <!-- SIZE -->
             <div class="form-group mb-2">
                 <h6>Colores</h6>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label class="form-check-label" for="inlineCheckbox1">Azul</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label" for="inlineCheckbox2">Amarrillo</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label class="form-check-label" for="inlineCheckbox1">Verde</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label" for="inlineCheckbox2">Negro</label>
+                <div class="form-check form-check-inline" *ngFor="let item of colors; let i = index">
+                    <input class="form-check-input" 
+                           type="checkbox"
+                           [checked]="checkedColors[i]"
+                           >
+                    <label class="form-check-label" for="inlineCheckbox1">{{ item.name }}</label>
                 </div>
             </div>
-            <!-- SIZE -->
+            <hr>
+            <!-- SIZE CLOSTINGS -->
             <div class="form-group mb-2">
-                <h6>Tallas</h6>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label class="form-check-label" for="inlineCheckbox1">XS</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label" for="inlineCheckbox2">S</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label class="form-check-label" for="inlineCheckbox1">M</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label" for="inlineCheckbox2">L</label>
+                <h6>Tallas ropa</h6>
+                <div class="form-check form-check-inline" *ngFor="let item of sizeR; let i = index">
+                    <input class="form-check-input" 
+                           type="checkbox" 
+                           [checked]="checkedSizeR[i]">
+                    <label class="form-check-label" for="inlineCheckbox1">{{ item.size }}</label>
                 </div>
             </div>
 
+            <!-- SIZE TROUSER -->
+            <div class="form-group mb-2">
+                <h6>Tallas ropa</h6>
+                <div class="form-check form-check-inline" *ngFor="let item of sizeP; let i = index">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            [checked]="checkedSizeP[i]">
+                    <label class="form-check-label" for="inlineCheckbox1">{{ item.size }}</label>
+                </div>
+            </div>
+
+            <!-- SIZE SHOES -->
+            <div class="form-group mb-2">
+                <h6>Tallas ropa</h6>
+                <div class="form-check form-check-inline" *ngFor="let item of sizeZ; let i = index">
+                    <input class="form-check-input" 
+                            type="checkbox" 
+                            [checked]="checkedSizeZ[i]">
+                    <label class="form-check-label" for="inlineCheckbox1">{{ item.size }}</label>
+                </div>
+            </div>
+            <hr>
             <!-- IMAGE -->
 
 

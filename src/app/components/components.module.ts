@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { PipesModule } from '../pipes/pipes.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
-import { ListComponent } from './products/list/list.component';
-import { AddComponent } from './products/add/add.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 // Components
-
-
+import { ListComponent } from './products/list/list.component';
+import { AddComponent } from './products/add/add.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +22,12 @@ import { AddComponent } from './products/add/add.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    BrowserAnimationsModule,
     PipesModule,
     NgxPaginationModule,
-    FormsModule
+    NgxSpinnerModule,
+    ToastrModule
   ]
 })
 export class ComponentsModule { }

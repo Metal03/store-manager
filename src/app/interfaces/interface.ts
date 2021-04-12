@@ -1,6 +1,7 @@
 export interface ProductI {
-    code:          string,
-    name:          string,
+    id?:           string,
+    code?:         string,
+    name?:         string,
     description?:  string,
     price?:        number,
     discount?:     number,
@@ -9,12 +10,12 @@ export interface ProductI {
     category?:     number,
     photo?:        string[],
     status?:       number,
-    type:          number,
-    sizer:         string[],
-    sizez:         number[],
-    sizep:         number[],
-    accesory:      boolean,
-    date:          number
+    type?:         number,
+    sizer?:        string[],
+    sizez?:        number[],
+    sizep?:        number[],
+    accesory?:     boolean,
+    date?:         number
 }
 
 /**
@@ -56,4 +57,16 @@ export interface SizezI {
 
 export interface SizepI {
     size?:         number,
+}
+
+export interface ColorI{
+    name?:         string,
+    code?:         string
+}
+
+export interface FileI {
+    name: string;
+    imageFile: File;
+    size: string;
+    type: string;
 }

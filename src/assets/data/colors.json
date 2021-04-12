@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Amarrillo",
+        "code": "HELLOW"
+    },
+    {
+        "name": "Azul",
+        "code": "BLUE"
+    },
+    {
+        "name": "Blanco",
+        "code": "WHITE"
+    },
+    {
+        "name": "Cafe",
+        "code": "BROWN"
+    },
+    {
+        "name": "Celeste",
+        "code": "SKIBLUE"
+    },
+    {
+        "name": "Gris",
+        "code": "GRAY"
+    },
+    {
+        "name": "Morado",
+        "code": "PURPLE"
+    },
+    {
+        "name": "Naranja",
+        "code": "ORANGE"
+    },
+    {
+        "name": "Negro",
+        "code": "BLACK"
+    },
+    {
+        "name": "Rosa",
+        "code": "PINK"
+    },
+    {
+        "name": "Rojo",
+        "code": "RED"
+    },
+    {
+        "name": "Verde",
+        "code": "GREEN"
+    }
+]

@@ -1,54 +1,45 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ProductI } from '../interfaces/interface';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { ProductI } from '../interfaces/interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-constructor(
-  private http: HttpClient
-) { }
-
-  getFeatures(orderBy: string = 'desc') {
-    return this.http.get<ProductI[]>('/assets/data/products.json')
-                    .pipe(
-                      map(
-                        data => {
-                          const array: ProductI[] = data.reduce(
-                            (prev, curr: ProductI) => {
-                              if (curr.type === 1) {
-                                prev.push(curr)
-                              }
-                              return prev
-                            }, 
-                            []
-                          )
-                          if ( orderBy === 'desc') {
-                            return array.sort((a,b) => b.date - a.date );
-                          } else {
-                            return array.sort((a,b) => a.date - b.date );
-                          }
-                        }
-                      )
-                    )
+  private productsColletions: AngularFirestoreCollection<ProductI>;
+  private products: Observable<ProductI[]>;
+  private productDoc: AngularFirestoreDocument<ProductI>;
+  private product: Observable<ProductI>;
+  constructor(
+    private afs: AngularFirestore
+  ) { 
+    this.productsColletions = afs.collection<ProductI>('product');
   }
 
-  getProduct(orderBy: string = 'desc') {
-    return this.http.get<ProductI[]>('/assets/data/products.json')
-                    .pipe(
-                      map(
-                        data => { console.log(data)
-                          const array: ProductI[] = data;
-                          if ( orderBy === 'desc') {
-                            return array.sort((a,b) => b.date - a.date );
-                          } else {
-                            return array.sort((a,b) => a.date - b.date );
-                          }
-                        }
-                      )
-                    )
+  getProducts() {
+    this.productsColletions = this.afs.collection<ProductI>('product');
+    return this.products = this.productsColletions.snapshotChanges()
+           .pipe(map( changes => {
+              return changes.map( action => {
+                const data = action.payload.doc.data() as ProductI;
+                data.id = action.payload.doc.id;
+                return data;
+              });
+           }));
+  }
+
+  addOrUpdateProduct(product: ProductI) {
+    if (product.id !== '') {
+      const id = product.id;
+      delete product.id;
+      this.productDoc = this.afs.doc<ProductI>(`product/${id}`);
+      this.productDoc.update(product);
+    } else {
+      this.productsColletions.add(product);
+    }
   }
 }
