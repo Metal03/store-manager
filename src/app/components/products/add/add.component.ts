@@ -53,6 +53,7 @@ export class AddComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.product)
     this.getCategories();
     this.getCalasifications();
     this.getColors();

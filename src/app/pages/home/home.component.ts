@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductI } from 'src/app/interfaces/interface';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   public showForm: boolean = false;
+  public product: ProductI;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onEdit( obj ) {
+    this.showForm = !this.showForm;
+    this.product = obj;
   }
 
 }

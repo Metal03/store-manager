@@ -10,15 +10,18 @@ import { ToastrModule } from 'ngx-toastr';
 // Components
 import { ListComponent } from './products/list/list.component';
 import { AddComponent } from './products/add/add.component';
+import { DetailComponent } from './detail/detail.component';
 
 @NgModule({
   declarations: [
   ListComponent,
-  AddComponent
+  AddComponent,
+  DetailComponent
   ],
   exports: [  
     ListComponent,
-    AddComponent
+    AddComponent,
+    DetailComponent
   ],
   imports: [
     CommonModule,
