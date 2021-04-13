@@ -1,0 +1,42 @@
+.uploadFile {
+    cursor: pointer;
+}
+/* style buttom file*/
+#file
+{
+    display: none;
+}
+.btn{
+    display: block;
+    padding: 6px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    background-color: #3991A9;
+    border-radius: 3px;
+    cursor: pointer;
+    border-bottom: 3px solic #237085;
+    font-family: sans-serif;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+#texto{
+    color: white;
+}
+
+.btn_file{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+/* Cursor */
+.puntero {
+    cursor: pointer;
+}

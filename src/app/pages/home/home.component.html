@@ -4,12 +4,12 @@
 
 
     <div class="row">
-        <div class="col-5" *ngIf="!showForm">
+        <div class="col-7" *ngIf="!showForm">
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Buscar producto" aria-label="Search">
             </form>
         </div>
-        <div class="col-7">
+        <div class="col-5">
             <button [ngClass]="showForm ? 'btn btn-outline-danger' : 'btn btn-outline-primary'"
                     (click)="showForm = !showForm">
                 {{ showForm ? 'Atrar': 'Agregar' }}

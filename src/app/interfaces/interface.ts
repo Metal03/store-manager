@@ -65,8 +65,9 @@ export interface ColorI{
 }
 
 export interface FileI {
-    name: string;
-    imageFile: File;
-    size: string;
-    type: string;
+    name?: string;
+    imageFile?: File;
+    size?: string;
+    type?: string;
+    url?: string;
 }

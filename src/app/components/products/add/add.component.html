@@ -1,37 +1,37 @@
 
 
 
-<div class="row mx-2 mb-5">
 
-    <div class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 
-                col-md-10 offset-md-1 col-sm-11 offset-sm-0 5 
+<form (ngSubmit)="onSubmit( fregister )" #fregister="ngForm">
+    <div class="row mx-2 mb-5">
+        <div class="col-xl-7 offset-xl-0 col-lg-7 offset-lg-0 
+                col-md-7 offset-md-0 col-sm-10 offset-sm-1
                 col-xs-12 offset-xs-0">
-        <h3>{{ title }}</h3>
-        <hr>
+            <h3>{{ title }}</h3>
+            <hr>
 
-        <form>
             <!-- TYPE -->
             <div class="row mb-2">
                 <div class="col">
                     <h6>Destacado</h6>
                     <div class="form-check">
                         <input class="form-check-input" 
-                               type="checkbox" 
-                               value="" 
-                               id="flexCheckDefault"
-                               [checked]="featured">
+                            type="checkbox" 
+                            value="" 
+                            id="flexCheckDefault"
+                            [checked]="featured">
                         <label class="form-check-label" for="flexCheckDefault">
-                          SI
+                        SI
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" 
-                               type="checkbox" 
-                               value="" 
-                               id="flexCheckDefault"
-                               [checked]="!featured">
+                            type="checkbox" 
+                            value="" 
+                            id="flexCheckDefault"
+                            [checked]="!featured">
                         <label class="form-check-label" for="flexCheckDefault">
-                          NO
+                        NO
                         </label>
                     </div>
                 </div>
@@ -40,22 +40,22 @@
                     <h6>Tipo</h6>
                     <div class="form-check">
                         <input class="form-check-input" 
-                               type="checkbox" 
-                               value="" 
-                               id="flexCheckDefault"
-                               [checked]="!typeProduct">
+                            type="checkbox" 
+                            value="" 
+                            id="flexCheckDefault"
+                            [checked]="!typeProduct">
                         <label class="form-check-label" for="flexCheckDefault">
-                          Producto
+                        Producto
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" 
-                               type="checkbox" 
-                               value="" 
-                               id="flexCheckDefault"
-                               [checked]="typeProduct">
+                            type="checkbox" 
+                            value="" 
+                            id="flexCheckDefault"
+                            [checked]="typeProduct">
                         <label class="form-check-label" for="flexCheckDefault">
-                          Accesorio
+                        Accesorio
                         </label>
                     </div>
                 </div>
@@ -64,36 +64,35 @@
             <!-- SELECTS -->
             <div class="row mb-2">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-2">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" (change)="onSelectCategory($event)">
                         <option selected>Categorias</option>
                         <option *ngFor="let item of categories" [value]="item.id">{{ item.name | lowercase }}</option>
-                      </select>
+                    </select>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-2">
                     <select class="form-select" aria-label="Default select example">
                         <option selected>Clasificacions</option>
                         <option *ngFor="let item of clasifications" [value]="item.id">{{ item.name | lowercase }}</option>
-                      </select>
+                    </select>
                 </div>
             </div>
-            <br>
             <!-- INPUT NAME -->
             <div class="form-group mb-2">
                 <input type="text"
-                       class="form-control"
-                       name="name"
-                       placeholder="Nombre"
-                       [(ngModel)]="product.name"
-                       required>
+                    class="form-control"
+                    name="name"
+                    placeholder="Nombre"
+                    [(ngModel)]="product.name"
+                    required>
             </div>
             <!-- INPUT DESCRIPTION -->
             
             <div class="form-group mb-2">
                 <textarea class="form-control" 
-                          rows="3"
-                          name="description"
-                          [(ngModel)]="product.description"
-                          placeholder="Descripcion">
+                        rows="3"
+                        name="description"
+                        [(ngModel)]="product.description"
+                        placeholder="Descripcion">
                 </textarea>
             </div>
             <!-- INPUT PRICE -->
@@ -101,21 +100,21 @@
                 <div class="col">
                     <div class="form-group">
                         <input type="number"
-                               class="form-control"
-                               name="price"
-                               placeholder="Precio"
-                               [(ngModel)]="product.price"
-                               required>
+                            class="form-control"
+                            name="price"
+                            placeholder="Precio"
+                            [(ngModel)]="product.price"
+                            required>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <input type="number"
-                               class="form-control"
-                               name="discount"
-                               [(ngModel)]="product.discount"
-                               placeholder="Descuento"
-                               >
+                            class="form-control"
+                            name="discount"
+                            [(ngModel)]="product.discount"
+                            placeholder="Descuento"
+                            >
                     </div>
                 </div>
             </div>
@@ -125,27 +124,26 @@
                 <h6>Colores</h6>
                 <div class="form-check form-check-inline" *ngFor="let item of colors; let i = index">
                     <input class="form-check-input" 
-                           type="checkbox"
-                           [checked]="checkedColors[i]"
-                           >
+                        type="checkbox"
+                        [checked]="checkedColors[i]"
+                        >
                     <label class="form-check-label" for="inlineCheckbox1">{{ item.name }}</label>
                 </div>
             </div>
             <hr>
             <!-- SIZE CLOSTINGS -->
-            <div class="form-group mb-2">
-                <h6>Tallas ropa</h6>
+            <h6 *ngIf="showSizeR || showSizeP || showSizeZ">Tallas</h6>
+            <div class="form-group mb-2" *ngIf="showSizeR">
                 <div class="form-check form-check-inline" *ngFor="let item of sizeR; let i = index">
                     <input class="form-check-input" 
-                           type="checkbox" 
-                           [checked]="checkedSizeR[i]">
+                        type="checkbox" 
+                        [checked]="checkedSizeR[i]">
                     <label class="form-check-label" for="inlineCheckbox1">{{ item.size }}</label>
                 </div>
             </div>
 
             <!-- SIZE TROUSER -->
-            <div class="form-group mb-2">
-                <h6>Tallas ropa</h6>
+            <div class="form-group mb-2" *ngIf="showSizeP">
                 <div class="form-check form-check-inline" *ngFor="let item of sizeP; let i = index">
                     <input class="form-check-input" 
                             type="checkbox" 
@@ -155,35 +153,49 @@
             </div>
 
             <!-- SIZE SHOES -->
-            <div class="form-group mb-2">
-                <h6>Tallas ropa</h6>
-                <div class="form-check form-check-inline" *ngFor="let item of sizeZ; let i = index">
-                    <input class="form-check-input" 
-                            type="checkbox" 
-                            [checked]="checkedSizeZ[i]">
-                    <label class="form-check-label" for="inlineCheckbox1">{{ item.size }}</label>
-                </div>
-            </div>
-            <hr>
-            <!-- IMAGE -->
+            <div class="form-group mb-2" *ngIf="showSizeZ">
+                    <div class="form-check form-check-inline" *ngFor="let item of sizeZ; let i = index">
+                        <input class="form-check-input" 
+                                type="checkbox" 
+                                [checked]="checkedSizeZ[i]">
+                        <label class="form-check-label" for="inlineCheckbox1">{{ item.size }}</label>
+                    </div>
+        </div>
 
 
-
+        </div>
+        
+    
+        <div class="col-xl-5 offset-xl-0 col-lg-5 offset-lg-0 
+                    col-md-5 offset-md-0 col-sm-10 offset-sm-1
+                    col-xs-12 offset-xs-0">
+            
+                    <h3>Fotos</h3>
+                    <hr>
             <!-- BTN -->
-            <br>
             <div class="row">
-                <div class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2
-                            col-md-8 offset-md-2 col-sm-10 offset-sm-1
-                            col-xs-10 offset-xs-1">
+                <div class="col-6 mb-2" *ngFor="let item of imgPreview">
 
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-outline-primary">
-                            Guardar
-                        </button>
+                    <div class="card w-100">
+                        <img [src]="item.url" alt="">
+                    </div>
+                </div>
+                <div class="col-6 mb-2 uploadFile" *ngIf="3 > imgPreview.length">
+                    <div class="card w-100" style="max-height: 220px;">
+                        <input type="file" class="btn_file" name="foto" accept="image/*">
+                        <img src="../../../../assets/img/upload.png" alt="" style="height: 200px !important;">
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
 
-</div>
+            <ngx-spinner></ngx-spinner>
+
+            <br><br>
+            <div class="d-grid gap-2">
+                <button class="btn btn-outline-primary" [disabled]="!fregister.valid">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
