@@ -6,22 +6,37 @@
         </div>
 
         <div class="login__forms">
-            <form action="" class="login__register" id="login-in">
+            <form class="login__register" id="login-in"
+                  (ngSubmit)="onLoginEmailUser( flogin )" #flogin="ngForm">
                 <h1 class="login__title">Login</h1>
 
                 <div class="login__box">
                     <i class='bx bx-user login__icon'></i>
-                    <input type="text" placeholder="Usuario" class="login__input">
+                    <input type="text" 
+                           placeholder="Usuario" 
+                           class="login__input"
+                           name="email"
+                           [(ngModel)]="user.email">
                 </div>
 
                 <div class="login__box">
                     <i class='bx bx-lock-alt login__icon'></i>
-                    <input type="password" placeholder="Contraseña" class="login__input">
+                    <input type="password" 
+                           placeholder="Contraseña" 
+                           class="login__input"
+                           name="password"
+                           [(ngModel)]="user.password">
                 </div>
                 <br>
                 <div class="d-grid gap-2">
 
-                    <a style="text-decoration: none;" class="login__button">Entrar</a>
+                    <button style="text-decoration: none;" 
+                       class="login__button"
+                       type="submit"
+                       [disabled]="!flogin.valid"
+                       >
+                       Entrar
+                    </button>
                 </div>
 
             </form>

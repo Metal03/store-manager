@@ -1,3 +1,11 @@
+
+export interface UserI {
+    email?: string;
+    password?: string;
+    username?: string;
+    displayname?: string;
+    photoUrl?: string;
+}
 export interface ProductI {
     id?:           string,
     code?:         string,

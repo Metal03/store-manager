@@ -64,14 +64,21 @@
             <!-- SELECTS -->
             <div class="row mb-2">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-2">
-                    <select class="form-select" aria-label="Default select example" (change)="onSelectCategory($event)">
-                        <option selected>Categorias</option>
+                    <label class="form-label">Categorias</label>
+                    <select class="form-select" 
+                            aria-label="Default select example"
+                            name="category"
+                            [(ngModel)]="product.category" 
+                            (change)="onSelectCategory($event)">
                         <option *ngFor="let item of categories" [value]="item.id">{{ item.name | lowercase }}</option>
                     </select>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-2">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Clasificacions</option>
+                    <label class="form-label">Clasificación</label>
+                    <select class="form-select" 
+                            aria-label="Default select example"
+                            name="clasification"
+                            [(ngModel)]="product.clasification">
                         <option *ngFor="let item of clasifications" [value]="item.id">{{ item.name | lowercase }}</option>
                     </select>
                 </div>
@@ -126,6 +133,8 @@
                     <input class="form-check-input" 
                         type="checkbox"
                         [checked]="checkedColors[i]"
+                        name="color"
+                        [(ngModel)]="checkedColors[i]"
                         >
                     <label class="form-check-label" for="inlineCheckbox1">{{ item.name }}</label>
                 </div>
@@ -136,8 +145,10 @@
             <div class="form-group mb-2" *ngIf="showSizeR">
                 <div class="form-check form-check-inline" *ngFor="let item of sizeR; let i = index">
                     <input class="form-check-input" 
-                        type="checkbox" 
-                        [checked]="checkedSizeR[i]">
+                           type="checkbox" 
+                           name='sizer'
+                           [(ngModel)]="checkedSizeR[i]"
+                           [checked]="checkedSizeR[i]">
                     <label class="form-check-label" for="inlineCheckbox1">{{ item.size }}</label>
                 </div>
             </div>
@@ -146,8 +157,10 @@
             <div class="form-group mb-2" *ngIf="showSizeP">
                 <div class="form-check form-check-inline" *ngFor="let item of sizeP; let i = index">
                     <input class="form-check-input" 
-                            type="checkbox" 
-                            [checked]="checkedSizeP[i]">
+                           type="checkbox"
+                           name="sizep"
+                           [(ngModel)]="checkedSizeP[i]" 
+                           [checked]="checkedSizeP[i]">
                     <label class="form-check-label" for="inlineCheckbox1">{{ item.size }}</label>
                 </div>
             </div>
@@ -156,8 +169,10 @@
             <div class="form-group mb-2" *ngIf="showSizeZ">
                     <div class="form-check form-check-inline" *ngFor="let item of sizeZ; let i = index">
                         <input class="form-check-input" 
-                                type="checkbox" 
-                                [checked]="checkedSizeZ[i]">
+                               type="checkbox" 
+                               name="sizez"
+                               [(ngModel)]="checkedSizeZ[i]"
+                               [checked]="checkedSizeZ[i]">
                         <label class="form-check-label" for="inlineCheckbox1">{{ item.size }}</label>
                     </div>
         </div>
@@ -182,7 +197,7 @@
                 </div>
                 <div class="col-6 mb-2 uploadFile" *ngIf="3 > imgPreview.length">
                     <div class="card w-100" style="max-height: 220px;">
-                        <input type="file" class="btn_file" name="foto" accept="image/*">
+                        <input type="file" class="btn_file" name="foto" accept="image/*" (change)="handleImage( $event )">
                         <img src="../../../../assets/img/upload.png" alt="" style="height: 200px !important;">
                     </div>
                 </div>

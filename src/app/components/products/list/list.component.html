@@ -14,13 +14,13 @@
         {{ i + 1 }}
       </th>
       <th>
-        <img width="50" height="50" src="../../../../assets/img/avatar.png" alt="">
+        <img width="50" height="50" [src]="item.photo[0]" alt="">
       </th>
       <td>
-        Laptop DELL latitud
+        {{ item.name }}
       </td>
       <td>
-        c$ 150
+        c$ {{ item.price }}
       </td>
       <td>
         <button class="btn btn-outline-primary me-2">

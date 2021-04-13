@@ -27,7 +27,6 @@ export class ListComponent implements OnInit {
       setTimeout(() => {
         this.products = products;
         this.spinner.hide();
-        console.log(products)
       }, 1000);
     });
   }

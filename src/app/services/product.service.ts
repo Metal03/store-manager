@@ -39,7 +39,10 @@ export class ProductService {
       this.productDoc = this.afs.doc<ProductI>(`product/${id}`);
       this.productDoc.update(product);
     } else {
-      this.productsColletions.add(product);
+      this.productsColletions.add(product).then( resp => {
+        product.code = resp.id;
+        resp.update(product);
+      })
     }
   }
 }

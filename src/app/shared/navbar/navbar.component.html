@@ -12,11 +12,11 @@
           <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
               <img class="avatar_mask" src="../../../assets/img/avatar.png" alt="">
-              Roberto Calero
+              {{ user.email }}
             </a>
           </li>
           <li class="nav-item m-auto">
-            <a class="nav-link text-danger" routerLink="/login">Salir</a>
+            <a class="nav-link text-danger" (click)="logout()">Salir</a>
           </li>
 
         </ul>

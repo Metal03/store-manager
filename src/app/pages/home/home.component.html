@@ -24,7 +24,7 @@
 
     <!-- FORMS -->
     <div class="row mt-5" *ngIf="showForm">
-        <app-add></app-add>
+        <app-add (closeForm)="showForm = $event"></app-add>
     </div>
 
 </div>
