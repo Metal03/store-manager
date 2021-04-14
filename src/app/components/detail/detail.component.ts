@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductI } from 'src/app/interfaces/interface';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -10,7 +9,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class DetailComponent implements OnInit {
 
-  public product: ProductI;
+  @Input() product: ProductI;
   public photo: string = '';
   public colorP: boolean = false;
   public colorW: boolean = false;
@@ -55,3 +54,7 @@ export class DetailComponent implements OnInit {
     this.photo = file;
   }
 }
+function Inpyut() {
+  throw new Error('Function not implemented.');
+}
+

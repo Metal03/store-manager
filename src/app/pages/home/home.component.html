@@ -17,14 +17,19 @@
         </div>
     </div>
     <!-- Table -->
-    <div class="row mt-5" *ngIf="!showForm">
-        <app-list (productEdit)="onEdit( $event )"></app-list>
+    <div class="row mt-5" *ngIf="!showForm && !showDetail">
+        <app-list (productEdit)="onEdit( $event )"
+                  (productDetail)="onDetail( $event )"></app-list>
     </div>
 
 
     <!-- FORMS -->
-    <div class="row mt-5" *ngIf="showForm">
+    <div class="row mt-5" *ngIf="showForm && !showDetail">
         <app-add [product]="product" (closeForm)="showForm = $event"></app-add>
+    </div>
+
+    <div class="row mt-5" *ngIf="showDetail && !showForm">
+        <app-detail [product]="product"></app-detail>
     </div>
 
 </div>

@@ -13,6 +13,7 @@ export class ListComponent implements OnInit {
 
   public products: ProductI[] = [];
   @Output() productEdit = new EventEmitter<ProductI>();
+  @Output() productDetail = new EventEmitter<ProductI>();
   constructor(
     private spinner: NgxSpinnerService,
     private productService: ProductService

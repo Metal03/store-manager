@@ -1,0 +1,45 @@
+.span-badge {
+    padding: 6px;
+    color: #ffffff;
+    border-radius: 10px;
+    font-weight: bold;
+}
+  
+.bg-hellow {
+    background: #ffff00;
+    color: #000000;
+}
+.bg-blue {
+    background: #0000ff;
+}
+.bg-white {
+    background: #ffffff;
+    color: #000000;
+}
+.bg-brown {
+    background: #800000;
+}
+.bg-lightblue {
+    background: #2eccfa;
+}
+.bg-gray {
+    background: #808080;
+}
+.bg-purple {
+    background: #800080;
+}
+.bg-orange {
+    background: #df7401;
+}
+.bg-black {
+    background: #000000;
+}
+.bg-pink {
+    background: #ff00ff;
+}
+.bg-red {
+    background: #ff0000;
+}
+.bg-green {
+    background: #008000;
+}

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import * as firebase from 'firebase/app';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,10 @@ export class AuthService {
 
   isAuth() {
     return this.afsAuth.authState.pipe(map(auth => auth || null));
+  }
+
+  isLogged(): Observable<any> {
+    return this.afsAuth.authState.pipe(map(auth => auth ? true : false ));
   }
 
   loginEmailUser(email: string, pass: string) {
