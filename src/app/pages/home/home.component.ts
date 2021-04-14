@@ -12,9 +12,14 @@ export class HomeComponent implements OnInit {
   public showDetail: boolean = false;
 
   public product: ProductI = { id: ''};
+  public textSearch: string = '';
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSearch( e ) {
+    this.textSearch = e.target.value;
   }
 
   onEdit( obj ) {

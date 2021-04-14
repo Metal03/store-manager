@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
 import { ProductI } from '../../../interfaces/interface';
@@ -11,6 +11,7 @@ import { ProductService } from '../../../services/product.service';
 })
 export class ListComponent implements OnInit {
 
+  @Input() textSearch: string = '';
   public products: ProductI[] = [];
   @Output() productEdit = new EventEmitter<ProductI>();
   @Output() productDetail = new EventEmitter<ProductI>();

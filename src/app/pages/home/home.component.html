@@ -4,21 +4,30 @@
 
 
     <div class="row">
-        <div class="col-7" *ngIf="!showForm">
+        <div class="col-7" *ngIf="!showForm && !showDetail">
             <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Buscar producto" aria-label="Search">
+                <input class="form-control me-2" 
+                       type="search" 
+                       placeholder="Buscar producto" 
+                       aria-label="Search"
+                       (keyup)="onSearch( $event )">
             </form>
         </div>
         <div class="col-5">
-            <button [ngClass]="showForm ? 'btn btn-outline-danger' : 'btn btn-outline-primary'"
+            <button [ngClass]="showForm ? 'btn btn-outline-danger' : 'btn btn-outline-primary'" *ngIf="!showDetail"
                     (click)="showForm = !showForm">
                 {{ showForm ? 'Atrar': 'Agregar' }}
+            </button>
+            <button class="btn btn-outline-danger" *ngIf="showDetail"
+                    (click)="showDetail = !showDetail">
+                Atrar
             </button>
         </div>
     </div>
     <!-- Table -->
     <div class="row mt-5" *ngIf="!showForm && !showDetail">
-        <app-list (productEdit)="onEdit( $event )"
+        <app-list [textSearch]="textSearch"
+                  (productEdit)="onEdit( $event )"
                   (productDetail)="onDetail( $event )"></app-list>
     </div>
 
