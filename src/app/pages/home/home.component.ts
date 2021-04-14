@@ -9,7 +9,7 @@ import { ProductI } from 'src/app/interfaces/interface';
 export class HomeComponent implements OnInit {
 
   public showForm: boolean = false;
-  public product: ProductI;
+  public product: ProductI = { id: ''};
   constructor() { }
 
   ngOnInit(): void {

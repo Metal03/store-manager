@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ProductI } from '../interfaces/interface';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,7 @@ export class ProductService {
   private productDoc: AngularFirestoreDocument<ProductI>;
   private product: Observable<ProductI>;
   constructor(
+    private storage: AngularFireStorage,
     private afs: AngularFirestore
   ) { 
     this.productsColletions = afs.collection<ProductI>('product');
@@ -44,5 +45,15 @@ export class ProductService {
         resp.update(product);
       })
     }
+  }
+
+  delete(id: string) {
+
+    this.productDoc = this.afs.doc<ProductI>(`product/${id}`);
+    this.productDoc.delete();
+  }
+
+  async deleteImage(url: string ) {
+    await this.storage.refFromURL(url).delete();
   }
 }

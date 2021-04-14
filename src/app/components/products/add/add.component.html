@@ -189,10 +189,15 @@
                     <hr>
             <!-- BTN -->
             <div class="row">
-                <div class="col-6 mb-2" *ngFor="let item of imgPreview">
+                <div class="col-6 mb-2" *ngFor="let item of imgPreview; let i = index">
 
-                    <div class="card w-100">
+                    <div class="card w-100 new__box">
                         <img [src]="item.url" alt="">
+                        <div class="new__link">
+                            <button class="btn btn-outline-danger" type="button" (click)="deletePhoto(item.url, i)">
+                              Eliminar
+                            </button>
+                          </div>
                     </div>
                 </div>
                 <div class="col-6 mb-2 uploadFile" *ngIf="3 > imgPreview.length">

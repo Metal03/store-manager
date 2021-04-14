@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import Swal from 'sweetalert2';
 import { ProductI } from '../../../interfaces/interface';
 import { ProductService } from '../../../services/product.service';
 
@@ -29,5 +30,25 @@ export class ListComponent implements OnInit {
         this.spinner.hide();
       }, 1000);
     });
+  }
+
+  deletePhoto(product: ProductI) {
+    Swal.fire({
+      title: `Desea eliminar el producto ${ product.name }?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productService.delete(product.id);
+        Swal.fire(
+          'Exitoso!',
+          'Imagen eliminada correctamente.',
+          'success'
+        )
+      }
+    })
   }
 }

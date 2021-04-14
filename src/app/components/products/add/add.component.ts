@@ -8,6 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { finalize } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add',
@@ -53,13 +54,33 @@ export class AddComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.product)
+
+    if ( this.product.id !== '' ) {
+      this.title = 'Editar producto';
+      this.spinner.show();
+      this.onSelectCategory(null, true);
+      if ( this.product.category == 1 || this.product.category == 2 ) { this.getSizeR(true); }
+      else if ( this.product.category == 3 || this.product.category == 4 ) { this.getSizeP(true); }
+      else { this.getSizeZ(true); }
+      // Load images
+      this.product.photo.forEach( img => {
+        let i: FileI = { url: img };
+        this.imgPreview.push(i);
+      })
+      this.getColors(true);
+      this.typeProduct = this.product.accesory;
+      this.featured = this.product.type == 1 ? true : false;
+      setTimeout(() => {
+        this.spinner.hide();
+      }, 500);
+    } else {
+      this.getSizeR();
+      this.getSizeP();
+      this.getSizeZ();
+      this.getColors();
+    }
     this.getCategories();
     this.getCalasifications();
-    this.getColors();
-    this.getSizeR();
-    this.getSizeP();
-    this.getSizeZ();
   }
 
   
@@ -77,64 +98,100 @@ export class AddComponent implements OnInit {
     })
   }
 
-  getColors() {
+  getColors(band: boolean = false) {
     this.categoryService.getColors().subscribe( resp => {
       this.colors = resp;
       if ( resp.length > 0) {
         for( let i = 0; i < resp.length; i++) {
-          this.checkedColors[i] = false;
+          if ( !band) {
+            this.checkedColors[i] = false;
+          } else {
+            const item = this.product.colors.find( e => e === resp[i].code);
+            if (item) {
+              this.checkedColors[i] = true;
+            } else {
+              this.checkedColors[i] = false;
+            }
+          }
         }
       }
     });
   }
 
-  getSizeR() {
+  getSizeR(band: boolean = false) {
     this.sizeService.getSizer().subscribe( resp => {
       this.sizeR = resp;
       if ( resp.length > 0) {
         for( let i = 0; i < resp.length; i++) {
-          this.checkedSizeR[i] = false;
+          if ( !band) {
+            this.checkedSizeR[i] = false;
+          } else {
+            const item = this.product.sizer.find( e => e === resp[i].size);
+            if (item) {
+              this.checkedSizeR[i] = true;
+            } else {
+              this.checkedSizeR[i] = false;
+            }
+          }
         }
       }
     });
   }
 
-  getSizeP() {
+  getSizeP(band: boolean = false) {
     this.sizeService.getSizep().subscribe( resp => {
       this.sizeP = resp;
       if ( resp.length > 0) {
         for( let i = 0; i < resp.length; i++) {
-          this.checkedSizeP[i] = false;
+          if ( !band) {
+            this.checkedSizeP[i] = false;
+          } else {
+            const item = this.product.sizep.find( e => e === resp[i].size);
+            if (item) {
+              this.checkedSizeP[i] = true;
+            } else {
+              this.checkedSizeP[i] = false;
+            }
+          }
         }
       }
     });
   }
 
-  getSizeZ() {
+  getSizeZ(band: boolean = false) {
     this.sizeService.getSizez().subscribe( resp => {
       this.sizeZ = resp;
       if ( resp.length > 0) {
         for( let i = 0; i < resp.length; i++) {
-          this.checkedSizeZ[i] = false;
+          if ( !band) {
+            this.checkedSizeZ[i] = false;
+          } else {
+            const item = this.product.sizez.find( e => e === resp[i].size);
+            if (item) {
+              this.checkedSizeZ[i] = true;
+            } else {
+              this.checkedSizeZ[i] = false;
+            }
+          }
         }
       }
     });
   }
 
   // SELECT CATEGORY
-  onSelectCategory(e) {
-    let option = e.target.value;
-
-    if ( option == 1 || option == 2 ) {
-      this.showSizeR = true; this.showSizeP = false; this.showSizeZ = false;
-    } else  if ( option == 3 || option == 4 ) {
-      this.showSizeR = false; this.showSizeP = true; this.showSizeZ = false;
-    } else if ( option == 5 ) {
-      this.showSizeR = false; this.showSizeP = false; this.showSizeZ = true;
-    } else {
-      this.showSizeR = false; this.showSizeP = false; this.showSizeZ = false;
-    } 
-    
+  onSelectCategory(e, band: boolean = false) {
+    let option = band ? this.product.category : e.target.value;
+    if ( option !== undefined ) {
+      if ( option == 1 || option == 2 ) {
+        this.showSizeR = true; this.showSizeP = false; this.showSizeZ = false;
+      } else  if ( option == 3 || option == 4 ) {
+        this.showSizeR = false; this.showSizeP = true; this.showSizeZ = false;
+      } else if ( option == 5 ) {
+        this.showSizeR = false; this.showSizeP = false; this.showSizeZ = true;
+      } else {
+        this.showSizeR = false; this.showSizeP = false; this.showSizeZ = false;
+      } 
+    }
   }
 
   // UPLOAD IMAGE
@@ -283,7 +340,7 @@ export class AddComponent implements OnInit {
       this.toastr.warning('Al menos debe subir una foto de su producto', 'Advertencia', { timeOut: 1000 });
       return true;
     }
-
+    this.product.photo = [];
     this.imgPreview.forEach(file => {
       this.product.photo.push( file.url );
     })
@@ -292,4 +349,38 @@ export class AddComponent implements OnInit {
     return false;
   }
 
+  deletePhoto(url: string, i: number) {
+    Swal.fire({
+      title: 'Desea eliminar la imagen?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // si la imagen ya estaba almacenada en el registro del producto
+        if ( this.imgPreview.length === this.product.photo.length ) { console.log('IMG EXIT REGISTER')
+          this.imgPreview.splice(1, i);
+          this.product.photo = [];
+          this.imgPreview.forEach(file => {
+              this.product.photo.push( file.url );
+          })
+          this.productService.addOrUpdateProduct(this.product);
+        } else { console.log('La immagen solo esta en local')
+          this.imgPreview = [];
+          this.product.photo.forEach( img => {
+            let i: FileI = { url: img };
+            this.imgPreview.push(i);
+          })
+        }
+        this.productService.deleteImage(url);
+        Swal.fire(
+          'Exitoso!',
+          'Imagen eliminada correctamente.',
+          'success'
+        )
+      }
+    })
+  }
 }
