@@ -135,7 +135,7 @@
                         [checked]="checkedColors[i]"
                         name="color"
                         [(ngModel)]="checkedColors[i]"
-                        >
+                        [ngModelOptions]="{standalone: true}">
                     <label class="form-check-label" for="inlineCheckbox1">{{ item.name }}</label>
                 </div>
             </div>
@@ -148,7 +148,8 @@
                            type="checkbox" 
                            name='sizer'
                            [(ngModel)]="checkedSizeR[i]"
-                           [checked]="checkedSizeR[i]">
+                           [checked]="checkedSizeR[i]"
+                           [ngModelOptions]="{standalone: true}" >
                     <label class="form-check-label" for="inlineCheckbox1">{{ item.size }}</label>
                 </div>
             </div>
@@ -160,7 +161,8 @@
                            type="checkbox"
                            name="sizep"
                            [(ngModel)]="checkedSizeP[i]" 
-                           [checked]="checkedSizeP[i]">
+                           [checked]="checkedSizeP[i]"
+                           [ngModelOptions]="{standalone: true}" >
                     <label class="form-check-label" for="inlineCheckbox1">{{ item.size }}</label>
                 </div>
             </div>
@@ -172,7 +174,8 @@
                                type="checkbox" 
                                name="sizez"
                                [(ngModel)]="checkedSizeZ[i]"
-                               [checked]="checkedSizeZ[i]">
+                               [checked]="checkedSizeZ[i]"
+                               [ngModelOptions]="{standalone: true}" >
                         <label class="form-check-label" for="inlineCheckbox1">{{ item.size }}</label>
                     </div>
         </div>

@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   
-  onLoginRedirect(): void {
+  onLoginRedirect(): void { console.log('Hola')
     this.router.navigate(['/home']);
   }
 

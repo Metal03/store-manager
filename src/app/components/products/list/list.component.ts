@@ -30,7 +30,7 @@ export class ListComponent implements OnInit {
       setTimeout(() => {
         this.products = products;
         this.spinner.hide();
-      }, 1000);
+      }, 800);
     });
   }
 
