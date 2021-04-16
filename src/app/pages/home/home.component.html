@@ -25,7 +25,7 @@
         </div>
     </div>
     <!-- Table -->
-    <div class="row mt-5" *ngIf="!showForm && !showDetail">
+    <div class="row mt-2" *ngIf="!showForm && !showDetail">
         <app-list [textSearch]="textSearch"
                   (productEdit)="onEdit( $event )"
                   (productDetail)="onDetail( $event )"></app-list>
@@ -33,11 +33,11 @@
 
 
     <!-- FORMS -->
-    <div class="row mt-5" *ngIf="showForm && !showDetail">
+    <div class="row mt-2" *ngIf="showForm && !showDetail">
         <app-add [product]="product" (closeForm)="showForm = $event"></app-add>
     </div>
 
-    <div class="row mt-5" *ngIf="showDetail && !showForm">
+    <div class="row mt-2" *ngIf="showDetail && !showForm">
         <app-detail [product]="product"></app-detail>
     </div>
 

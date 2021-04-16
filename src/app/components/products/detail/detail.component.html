@@ -92,7 +92,7 @@
                             <h6 class="text-center">Precio</h6>
                             <h6 class="mb-3 text-center">
                                 <span class="text-info me-1">C$ {{ product?.price }} </span>
-                                <span class="text-grey"><s>C$ {{ product?.price }}</s></span>
+                                <span class="text-grey" *ngIf="product.discount"><s>C$ {{ product?.discount }}</s></span>
                             </h6>
                         </div>
 

@@ -29,7 +29,6 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.product)
     this.photo = this.product.photo[0];
     this.product.colors.forEach( color => {
       if ( color === 'HELLOW' ) { this.colorHellow = true }

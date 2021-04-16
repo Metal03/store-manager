@@ -2,6 +2,7 @@ import { AuthService } from './../services/auth.service';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,16 +21,17 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    const user = this.authService.isAuth().subscribe( auth => {
-      if ( auth ) {
-        this.uid = auth.uid;
-      }
-    })
-    if ( this.uid === '' ) {
-      return false;
-    } else {
-      this.router.navigate(['/home']);
-      return false;
-    }
+    return this.authService.userAuth.pipe(
+              map( user => {
+                  if(!user) {
+                    // Return to login page
+                    this.router.navigate(['/login']);
+                    return false
+                  } else {
+                    return true
+                  }
+                }
+              )
+           )
   }
 }

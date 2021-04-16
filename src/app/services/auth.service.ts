@@ -9,10 +9,13 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
+  public userAuth: Observable<firebase.default.User>;
   constructor(
     private afsAuth: AngularFireAuth,
     private afs: AngularFirestore
-  ) { }
+  ) { 
+    this.userAuth = afsAuth.authState;
+  }
 
   isAuth() {
     return this.afsAuth.authState.pipe(map(auth => auth || null));
