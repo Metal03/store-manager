@@ -14,48 +14,33 @@
             <div class="row mb-2">
                 <div class="col">
                     <h6>Destacado</h6>
-                    <div class="form-check">
+                    <div class="form-check" *ngFor="let item of [1,1]; let i = index">
                         <input class="form-check-input" 
-                            type="checkbox" 
-                            value="" 
-                            id="flexCheckDefault"
-                            [checked]="featured">
+                               type="checkbox"
+                               [checked]="featured[i]"
+                               name="featured"
+                               [(ngModel)]="featured[i]"
+                               [ngModelOptions]="{standalone: true}"
+                               (change)="changeFeatured( i )"
+                                >
                         <label class="form-check-label" for="flexCheckDefault">
-                        SI
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" 
-                            type="checkbox" 
-                            value="" 
-                            id="flexCheckDefault"
-                            [checked]="!featured">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        NO
+                            {{ i == 0 ? 'SI' : 'NO' }}
                         </label>
                     </div>
                 </div>
                 <!-- FEATURED -->
                 <div class="col">
                     <h6>Tipo</h6>
-                    <div class="form-check">
+                    <div class="form-check" *ngFor="let item of [1,1]; let i = index">
                         <input class="form-check-input" 
                             type="checkbox" 
-                            value="" 
-                            id="flexCheckDefault"
-                            [checked]="!typeProduct">
+                            [checked]="typeProduct[i]"
+                            name="type"
+                            [(ngModel)]="typeProduct[i]"
+                            [ngModelOptions]="{standalone: true}"
+                            (change)="changeTypeProduct( i )">
                         <label class="form-check-label" for="flexCheckDefault">
-                        Producto
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" 
-                            type="checkbox" 
-                            value="" 
-                            id="flexCheckDefault"
-                            [checked]="typeProduct">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        Accesorio
+                        {{ i == 0 ? 'Producto' : 'Accesorio' }}
                         </label>
                     </div>
                 </div>
@@ -63,7 +48,7 @@
             <hr>
             <!-- SELECTS -->
             <div class="row mb-2">
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-2">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-2" *ngIf="!product.accesory">
                     <label class="form-label">Categorias</label>
                     <select class="form-select" 
                             aria-label="Default select example"
@@ -78,7 +63,8 @@
                     <select class="form-select" 
                             aria-label="Default select example"
                             name="clasification"
-                            [(ngModel)]="product.clasification">
+                            [(ngModel)]="product.clasification"
+                            (change)="onSelectClasifications($event)">
                         <option *ngFor="let item of clasifications" [value]="item.id">{{ item.name | lowercase }}</option>
                     </select>
                 </div>
@@ -135,44 +121,77 @@
                         [checked]="checkedColors[i]"
                         name="color"
                         [(ngModel)]="checkedColors[i]"
+                        [ngModelOptions]="{standalone: true}"
                         >
                     <label class="form-check-label" for="inlineCheckbox1">{{ item.name }}</label>
                 </div>
             </div>
             <hr>
             <!-- SIZE CLOSTINGS -->
-            <h6 *ngIf="showSizeR || showSizeP || showSizeZ">Tallas</h6>
-            <div class="form-group mb-2" *ngIf="showSizeR">
+            <h6 *ngIf="(showSizeR || showSizeZ) && !product.accesory">Tallas</h6>
+            <div class="form-group mb-2" *ngIf="showSizeR && !product.accesory">
                 <div class="form-check form-check-inline" *ngFor="let item of sizeR; let i = index">
                     <input class="form-check-input" 
                            type="checkbox" 
                            name='sizer'
                            [(ngModel)]="checkedSizeR[i]"
-                           [checked]="checkedSizeR[i]">
+                           [checked]="checkedSizeR[i]"
+                           [ngModelOptions]="{standalone: true}">
                     <label class="form-check-label" for="inlineCheckbox1">{{ item.size }}</label>
                 </div>
             </div>
 
-            <!-- SIZE TROUSER -->
-            <div class="form-group mb-2" *ngIf="showSizeP">
-                <div class="form-check form-check-inline" *ngFor="let item of sizeP; let i = index">
+            <!-- SIZE TROUSER WOMEN -->
+            <h6 *ngIf="showSizePM && !product.accesory">Tallas Mujeres</h6>
+            <div class="form-group mb-2" *ngIf="showSizePM && !product.accesory">
+                <div class="form-check form-check-inline" *ngFor="let item of sizePM; let i = index">
                     <input class="form-check-input" 
                            type="checkbox"
                            name="sizep"
-                           [(ngModel)]="checkedSizeP[i]" 
-                           [checked]="checkedSizeP[i]">
+                           [(ngModel)]="checkedSizePM[i]" 
+                           [checked]="checkedSizePM[i]"
+                           [ngModelOptions]="{standalone: true}">
+                    <label class="form-check-label" for="inlineCheckbox1">{{ item.size }}</label>
+                </div>
+            </div>
+
+            <!-- SIZE TROUSER MEN -->
+            <h6 *ngIf="showSizeP && !product.accesory">Tallas Hombre</h6>
+            <div class="form-group mb-2" *ngIf="showSizeP && !product.accesory">
+                <div class="form-check form-check-inline" *ngFor="let item of sizeP; let i = index">
+                    <input class="form-check-input" 
+                            type="checkbox"
+                            name="sizep"
+                            [(ngModel)]="checkedSizeP[i]" 
+                            [checked]="checkedSizeP[i]"
+                            [ngModelOptions]="{standalone: true}">
+                    <label class="form-check-label" for="inlineCheckbox1">{{ item.size }}</label>
+                </div>
+            </div>
+
+            <!-- SIZE SHORT MEN -->
+            <h6 *ngIf="showSizeSM && !product.accesory">Tallas Mujeres</h6>
+            <div class="form-group mb-2" *ngIf="showSizeSM && !product.accesory">
+                <div class="form-check form-check-inline" *ngFor="let item of sizeSM; let i = index">
+                    <input class="form-check-input" 
+                            type="checkbox"
+                            name="sizep"
+                            [(ngModel)]="checkedSizeSM[i]" 
+                            [checked]="checkedSizeSM[i]"
+                            [ngModelOptions]="{standalone: true}">
                     <label class="form-check-label" for="inlineCheckbox1">{{ item.size }}</label>
                 </div>
             </div>
 
             <!-- SIZE SHOES -->
-            <div class="form-group mb-2" *ngIf="showSizeZ">
+            <div class="form-group mb-2" *ngIf="showSizeZ && !product.accesory">
                     <div class="form-check form-check-inline" *ngFor="let item of sizeZ; let i = index">
                         <input class="form-check-input" 
                                type="checkbox" 
                                name="sizez"
                                [(ngModel)]="checkedSizeZ[i]"
-                               [checked]="checkedSizeZ[i]">
+                               [checked]="checkedSizeZ[i]"
+                               [ngModelOptions]="{standalone: true}">
                         <label class="form-check-label" for="inlineCheckbox1">{{ item.size }}</label>
                     </div>
         </div>

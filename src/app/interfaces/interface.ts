@@ -22,6 +22,8 @@ export interface ProductI {
     sizer?:        string[],
     sizez?:        number[],
     sizep?:        number[],
+    sizepm?:       string[],
+    sizesm?:       string[],
     accesory?:     boolean,
     date?:         number
 }
@@ -65,6 +67,14 @@ export interface SizezI {
 
 export interface SizepI {
     size?:         number,
+}
+
+export interface SizepmI {
+    size?:         string,
+}
+
+export interface SizesmI {
+    size?:         string,
 }
 
 export interface ColorI{
