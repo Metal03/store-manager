@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   
   public user: UserI = { email: '', password: '' };
-
+  public showPass: boolean = false;
   constructor(
     private toastr: ToastrService,
     private router: Router,

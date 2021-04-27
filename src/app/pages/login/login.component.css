@@ -62,6 +62,10 @@ img{
   animation-name: animate-login;
 }
 
+.eye {
+  cursor: pointer;
+}
+
 @keyframes animate-login{
   0%{
     transform: scale(1,1);
