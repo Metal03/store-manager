@@ -24,6 +24,7 @@ export class DetailComponent implements OnInit {
   public colorGreen: boolean = false;
   public messageWhat: string = '';
 
+
   constructor(
   ) {
   }

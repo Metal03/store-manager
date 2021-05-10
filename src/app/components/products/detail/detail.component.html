@@ -60,7 +60,28 @@
                                     </label>
                                 </div>
                             </div>
-                            <!-- SIZE TROUSERS -->
+                            <!-- SIZE TROUSERS W -->
+                            <div class="form-check" *ngIf="product?.sizepm.length > 0">
+                                <div class="form-check form-check-inline" *ngFor="let item of product?.sizep">
+                                    <input class="form-check-input" type="checkbox" 
+                                            checked
+                                            id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        {{ item }}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-check" *ngIf="product?.sizesm.length > 0">
+                                <div class="form-check form-check-inline" *ngFor="let item of product?.sizep">
+                                    <input class="form-check-input" type="checkbox" 
+                                            checked
+                                            id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        {{ item }}
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- SIZE TROUSERS M -->
                             <div class="form-check" *ngIf="product?.sizep.length > 0">
                                 <div class="form-check form-check-inline" *ngFor="let item of product?.sizep">
                                     <input class="form-check-input" type="checkbox" 

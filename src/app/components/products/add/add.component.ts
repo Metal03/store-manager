@@ -347,7 +347,7 @@ export class AddComponent implements OnInit {
       this.spinner.hide();
     } else {
       this.product.date = new Date().getTime();
-      
+
       this.productService.addOrUpdateProduct(this.product);
       this.toastr.success('Registro exito', 'Proceso exito', { timeOut: 1500 });
       this.spinner.hide();
@@ -357,7 +357,7 @@ export class AddComponent implements OnInit {
 
   // VALIDATIONS INPUT
   validations(){
-    this.product.accesory = this.typeProduct[0] ? true: false;
+    this.product.accesory = this.typeProduct[0] ? false : true;
     this.product.type = this.featured[0] ? 1 : 0;
     // Validate name
     if (this.product.name === undefined || this.product.name === '') {
@@ -399,6 +399,8 @@ export class AddComponent implements OnInit {
     if ( !this.product.accesory ) {
       this.product.sizer = [];
       this.product.sizep = [];
+      this.product.sizepm = [];
+      this.product.sizesm = [];
       this.product.sizez = [];
       if (this.product.category == 1 || this.product.category == 2) {
         // Shit clothing sizes
@@ -482,7 +484,7 @@ export class AddComponent implements OnInit {
     this.imgPreview.forEach(file => {
       this.product.photo.push( file.url );
     })
-
+    console.log('FIN VALIDATION' ,this.product)
     // Todo bien
     return false;
   }
